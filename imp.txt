@@ -1,0 +1,38 @@
+f(col.equals("Id") || col.equals("Class"))
+        upd="Update Lecturer set " + col + "='" + val1+"'";
+        else
+        upd="Update Lecturer set " + col + "=" + val1;
+        if(condition.equals("0")==false )
+        {
+        if(condition.equals("Id") || condition.equals("Class"))
+        upd=upd+" where " + condition + opr + "'"+ val2+"'";
+        else
+        upd=upd+" where " + condition + opr +val2;
+        }
+        PreparedStatement pst1= con.prepareStatement(upd);
+	int a=pst1.executeUpdate(); 
+
+
+
+        if(col.equals("Id") || col.equals("Fname"))
+        dis1 = "Select * from Lecturer where " + col + "='" + val1+"'";
+        else
+        dis1 = "Select * from Lecturer where " + col + "=" + val1;
+        PreparedStatement pst2= con.prepareStatement(dis1);
+        ResultSet rs1=pst2.executeQuery();
+        out.println("New Data<br>");
+	 out.println("<table align='center' border='1' style='color:blue;font-family:convergence;background-color:aquamarine;font-size:20px'>");                                 
+	out.println("<tr><th>Emp ID</th><th>First Name</th><th>Last Name</th><th>Subject</th><th>Class</th><th>Qualification</th></tr>");
+
+	while(rs1.next())
+	 {
+		eid1=rs1.getString(1);
+                	fn1=rs1.getString(2);
+		ln1=rs1.getString(3);
+		sub1=rs1.getString(4);
+		cl1=rs1.getString(5);
+		ql1=rs1.getString(6);
+		
+		out.println("<tr><td>" +eid1+ "</td><td>" +fn1+ "</td><td>" +ln1+ "</td><td>" +sub1+ "</td><td>" +cl1+ "</td><td>" +ql1+"</td></tr>");
+	  }
+	out.println("</table>"); 
